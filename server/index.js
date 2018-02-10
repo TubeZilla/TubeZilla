@@ -1,5 +1,4 @@
-require('newrelic');
-var nr = require('newrelic');
+const nr = require('newrelic');
 const express = require('express');
 const request = require('request');
 const bodyParser = require('body-parser');
@@ -11,7 +10,7 @@ app.use(express.static(__dirname + '/../react/dist'));
 app.use(bodyParser.json());
 
 app.get('/ads', function (req, res) {
-  db.GilOutput({user_id: `${~~(Math.random() * 1000000)}`, channel_id: `${~~(Math.random() * 1000000)}`, ad_status: `${~~(Math.random() * 3)}`}, function(err, data) {
+  db.GilOutput({user_id: `${~~(Math.random() * 10)}`, channel_id: `${~~(Math.random() * 10)}`, ad_status: `${~~(Math.random() * 3)}`}, function(err, data) {
     if (err) {
       res.sendStatus(500);
     } else {
@@ -23,7 +22,6 @@ app.get('/ads', function (req, res) {
 app.post('/subscribed', function (req, res) {
   db.checkSub(function(err, data) {
     if (err) {
-      console.log('sub err')
       res.sendStatus(500);
     } else {
       res.json(data);
@@ -34,5 +32,5 @@ app.post('/subscribed', function (req, res) {
 const port = process.env.PORT || 3000;
 
 app.listen(port, function() {
-  console.log(`Serving 127.0.0.1:${port}`);
+  console.log(`127.0.0.1:${port}`);
 });
